@@ -1,0 +1,12 @@
+python==3.11
+pandas
+numpy
+scikit-learn
+joblib
+streamlit
+plotly
+matplotlib
+seaborn
+requests
+scipy
+reportlab
