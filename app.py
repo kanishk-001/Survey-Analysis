@@ -233,7 +233,7 @@ def page_dashboards(df: pd.DataFrame):
 
     if len(num_cols) >= 2:
         corr = df[num_cols].corr()
-        fig, ax = plt.subplots(figsize=(5, 4))
+        fig, ax = plt.subplots(figsize=(4, 3))
         sns.heatmap(corr, annot=True, fmt='.2f', cmap='coolwarm', ax=ax)
         st.pyplot(fig)
     else:
