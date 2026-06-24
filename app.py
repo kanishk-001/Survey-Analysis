@@ -203,7 +203,7 @@ def page_dashboards(df: pd.DataFrame):
         cross = pd.crosstab(df['Survey_Topic'], df['AI_Predicted_Sentiment'])
         top = cross.sum(axis=1).sort_values(ascending=False).head(15).index
         cross_top = cross.loc[top]
-        fig, ax = plt.subplots(figsize=(10, 5))
+        fig, ax = plt.subplots(figsize=(8, 4))
         cross_top.plot(kind='bar', stacked=True, ax=ax)
         ax.legend(loc='upper right')
         st.pyplot(fig)
@@ -233,7 +233,7 @@ def page_dashboards(df: pd.DataFrame):
 
     if len(num_cols) >= 2:
         corr = df[num_cols].corr()
-        fig, ax = plt.subplots(figsize=(6, 5))
+        fig, ax = plt.subplots(figsize=(5, 4))
         sns.heatmap(corr, annot=True, fmt='.2f', cmap='coolwarm', ax=ax)
         st.pyplot(fig)
     else:
@@ -243,7 +243,7 @@ def page_dashboards(df: pd.DataFrame):
     if len(num_cols) >= 2:
         x_col = st.selectbox('X axis', num_cols, index=0, key='scatter_x')
         y_col = st.selectbox('Y axis', num_cols, index=1 if len(num_cols) > 1 else 0, key='scatter_y')
-        fig, ax = plt.subplots(figsize=(6, 4))
+        fig, ax = plt.subplots(figsize=(5, 3))
         sns.scatterplot(data=df, x=x_col, y=y_col, ax=ax)
         try:
             sns.regplot(data=df, x=x_col, y=y_col, scatter=False, ax=ax, color='red')
@@ -257,7 +257,7 @@ def page_dashboards(df: pd.DataFrame):
     if num_cols and cat_cols:
         num = st.selectbox('Numeric for boxplot', num_cols, key='box_num')
         cat = st.selectbox('Category for boxplot', cat_cols, key='box_cat')
-        fig, ax = plt.subplots(figsize=(8, 4))
+        fig, ax = plt.subplots(figsize=(6, 3))
         sns.boxplot(x=df[cat], y=df[num], ax=ax)
         ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
         st.pyplot(fig)
